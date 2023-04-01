@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerBaseState
+public abstract class EnemyBaseState
 {
-    protected PlayerStateMachine _ctx;
-    protected PlayerStateFactory _factory;
+    protected EnemyStateMachine _ctx;
+    protected EnemyStateFactory _factory;
 
-    public PlayerBaseState(PlayerStateMachine ctx, PlayerStateFactory factory, string stateName)
+    public EnemyBaseState(EnemyStateMachine ctx, EnemyStateFactory factory, string stateName)
     {
         _ctx = ctx;
         _factory = factory;
@@ -22,7 +22,7 @@ public abstract class PlayerBaseState
     public abstract void StateExit();
 
 
-    protected void StateChange(PlayerBaseState newState)
+    protected void StateChange(EnemyBaseState newState)
     {
         StateExit();
         _ctx.CurrentState = newState;

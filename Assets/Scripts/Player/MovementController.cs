@@ -23,7 +23,8 @@ public class MovementController : MonoBehaviour
 
 
 
-    private void FixedUpdate()
+
+    public void MovePlayer()
     {
         _movementVectorTarget = new Vector3(_inputController.MovementInputVector.x, _inputController.MovementInputVector.z);
         _movementVector = Vector3.Lerp(_movementVector, _movementVectorTarget, _accelerationSpeed * Time.deltaTime);

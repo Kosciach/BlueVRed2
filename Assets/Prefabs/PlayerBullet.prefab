@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2435157845930614089}
+  _bulletHitEffect: {fileID: 7711890370369193601, guid: 8170d46351b6fb540b6f29b042c5545e, type: 3}
   _speed: 10.1
 --- !u!50 &2435157845930614089
 Rigidbody2D:

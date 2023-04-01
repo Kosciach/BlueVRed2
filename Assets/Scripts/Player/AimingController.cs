@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AimingScript : MonoBehaviour
+public class AimingController : MonoBehaviour
 {
     [Header("====References====")]
     [SerializeField] InputController _inputController;
@@ -19,14 +19,13 @@ public class AimingScript : MonoBehaviour
     private void Update()
     {
         MovePlayerAimTarget();
-        RotateToMouse();
     }
 
     private void MovePlayerAimTarget()
     {
         _aimTarget.position = Vector3.Lerp(_aimTarget.position, _inputController.MousePosition, _aimDelay * Time.deltaTime);
     }
-    private void RotateToMouse()
+    public void RotateToMouse()
     {
         float diffX = _aimTarget.position.x - transform.position.x;
         float diffY = _aimTarget.position.y - transform.position.y;

@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateFactory : MonoBehaviour
+public class PlayerStateFactory
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerStateMachine _stateMachine;
+
+    public PlayerStateFactory(PlayerStateMachine stateMachine)
     {
-        
+        _stateMachine = stateMachine;
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+
+    public PlayerBaseState MoveShoot()
     {
-        
+        return new PlayerMoveShootState(_stateMachine, this, "MoveShoot");
     }
 }
