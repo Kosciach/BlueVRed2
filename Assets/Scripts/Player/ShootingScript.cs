@@ -9,9 +9,41 @@ public class ShootingScript : MonoBehaviour
     [SerializeField] Transform _shootingPoint;
 
 
+    [Space(20)]
+    [Header("====Settings====")]
+    [Range(0, 100)]
+    [SerializeField] float _timeBetweenShoots;
+    [Range(0, 100)]
+    [SerializeField] float _timeToShoot;
+    [Range(0, 40)]
+    [SerializeField] float _timeToShootMultiplier;
+    [SerializeField] bool _canShootFromInput;
+
+    private void Start()
+    {
+        _timeToShoot = _timeBetweenShoots;
+    }
+
+
+
     private void Shoot()
     {
-        Instantiate(_bulletPrefab, _shootingPoint.position, transform.rotation);
+        if(_canShootFromInput) Instantiate(_bulletPrefab, _shootingPoint.position, transform.rotation);
+    }
+    public void TurretShooting()
+    {
+        _timeToShoot -= _timeToShootMultiplier * 10 * Time.deltaTime;
+        _timeToShoot = Mathf.Clamp(_timeToShoot, 0, _timeBetweenShoots);
+
+        if(_timeToShoot == 0)
+        {
+            Instantiate(_bulletPrefab, _shootingPoint.position, transform.rotation);
+            _timeToShoot = _timeBetweenShoots;
+        }
+    }
+    public void ToggleShootingFromInput(bool enable)
+    {
+        _canShootFromInput = enable;
     }
 
 

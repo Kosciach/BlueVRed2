@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -19,9 +20,15 @@ public class EnemySpawner : MonoBehaviour
     [Range(0, 20)]
     [SerializeField] float _spawnSpeed;
 
+
+    [SerializeField] Vector3[] _spawnPoints;
+    [SerializeField] int[] _directors;
+
+
     private void Start()
     {
         _timeToSpawn = _timeBetweenSpawns;
+        _spawnPoints = new Vector3[4];
     }
 
     private void Update()
@@ -43,5 +50,22 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn()
     {
 
+        _spawnPoints[0] = (Vector3.right * _mainCamera.orthographicSize * _mainCamera.aspect);
+        _spawnPoints[1] = -_spawnPoints[0];
+
+        _spawnPoints[2] = Vector3.up * 10;
+        _spawnPoints[3] = -_spawnPoints[2];
+
+        int index = Random.Range(0, 4);
+        int offsetIndex = Random.Range(0, 2);
+
+        Vector3 offset;
+        if (index < 2) offset = Vector3.up * _mainCamera.orthographicSize * _directors[offsetIndex];
+        else offset = Vector3.right * _mainCamera.orthographicSize * _mainCamera.aspect * _directors[offsetIndex];
+
+        Vector3 spawnPoint = _spawnPoints[index] + offset;
+
+
+        Instantiate(_enemyPrefab, spawnPoint, Quaternion.identity);
     }
 }

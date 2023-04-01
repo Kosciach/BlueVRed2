@@ -18,4 +18,8 @@ public class PlayerStateFactory
     {
         return new PlayerMoveShootState(_stateMachine, this, "MoveShoot");
     }
+    public PlayerBaseState Turret()
+    {
+        return new PlayerTurretState(_stateMachine, this, "Turret");
+    }
 }

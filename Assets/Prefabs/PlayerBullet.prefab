@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2435157845930614088}
   m_Layer: 0
   m_Name: PlayerBullet
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,6 +211,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 2435157845930614089}
   _bulletHitEffect: {fileID: 7711890370369193601, guid: 8170d46351b6fb540b6f29b042c5545e, type: 3}
   _speed: 10.1
+  _damage: 25
 --- !u!50 &2435157845930614089
 Rigidbody2D:
   serializedVersion: 4

@@ -8,15 +8,26 @@ public class EnemyMovementController : MonoBehaviour
     [SerializeField] Rigidbody2D _rigidbody;
 
 
+
+    [Space(20)]
+    [Header("====Settings====")]
+    [SerializeField] float _speedScale;
+
+
+
     [Space(20)]
     [Header("====Settings====")]
     [Range(0, 40)]
     [SerializeField] float _speed;
 
-
+    
 
     public void MoveToPlayer()
     {
-        _rigidbody.velocity = transform.up * _speed * 10 * Time.deltaTime;
+        _rigidbody.velocity = transform.up * _speedScale * _speed * 10 * Time.deltaTime;
+    }
+    public void UpdateSpeed(float health)
+    {
+        _speedScale = health;
     }
 }

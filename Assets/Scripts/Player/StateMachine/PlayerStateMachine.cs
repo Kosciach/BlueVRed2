@@ -33,7 +33,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Awake()
     {
         _factory = new PlayerStateFactory(this);
-        _currentState = _factory.MoveShoot();
+        _currentState = _factory.Turret();
         _currentState.StateEnter();
     }
 
