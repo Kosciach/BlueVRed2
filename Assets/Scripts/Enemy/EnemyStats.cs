@@ -25,6 +25,10 @@ public class EnemyStats : MonoBehaviour
 
     private bool _isDead;
 
+    public delegate void EnemyStatsEvent();
+    public static event EnemyStatsEvent Death;
+    public static event EnemyStatsEvent PlayerCollision;
+
 
     private void Start()
     {
@@ -53,8 +57,19 @@ public class EnemyStats : MonoBehaviour
 
         _isDead = true;
 
-
+        Death();
+        ShakeScript.Instance.Shake(2, 10);
         Instantiate(_enemyDeathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerCollision();
+            Die();
+        }
     }
 }

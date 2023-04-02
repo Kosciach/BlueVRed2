@@ -10,6 +10,7 @@ public class PlayerMoveShootState : PlayerBaseState
     public override void StateEnter()
     {
         _ctx.ShootingScript.enabled = true;
+        _ctx.ShootingScript.ToggleShootingFromInput(true);
     }
     public override void StateUpdate()
     {
