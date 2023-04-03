@@ -1,21 +1,50 @@
+using Shapes2D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private Gamemode_Base _currentGamemode; public Gamemode_Base CurrentGamemode { get { return _currentGamemode; } set { _currentGamemode = value; } }
-    private GamemodeFactory _gamemodeFactory;
-    [SerializeField] string _currentGamemodeName; public string CurrentGamemodeName { get { return _currentGamemodeName; } set { _currentGamemodeName = value; } }
+    public static GameController Instance;
+    private GameStageBase _currentGameStage; public GameStageBase CurrentGameStage { get { return _currentGameStage; } set { _currentGameStage = value; } }
+    private GameStageFactory _gameStageFactory;
+    [SerializeField] string _currentGameStageName; public string CurrentGameStageName { get { return _currentGameStageName; } set { _currentGameStageName = value; } }
+
+
+
+    [Space(20)]
+    [Header("====References====")]
+    [SerializeField] CanvasController _canvasController; public CanvasController CanvasController { get { return _canvasController; } }
+    [SerializeField] PlayerStateMachine _playerStateMachine; public PlayerStateMachine PlayerStateMachine { get { return _playerStateMachine; } }
+    [SerializeField] EnemySpawner _enemySpawner; public EnemySpawner EnemySpawner { get { return _enemySpawner; } }
+    [SerializeField] ScoreController _scoreController; public ScoreController ScoreController { get { return _scoreController; } }
 
 
 
 
     private void Awake()
     {
-        _gamemodeFactory = new GamemodeFactory(this);
-        _currentGamemode = _gamemodeFactory.Original();
-        _currentGamemode.EnterGamemode();
+        if(Instance == null) Instance = this;
+
+        _gameStageFactory = new GameStageFactory(this);
+        _currentGameStage = _gameStageFactory.Menu();
+        _currentGameStage.EnterGameStage();
+    }
+
+
+    public void SwitchToMainMenu()
+    {
+        SwitchGameStage(_gameStageFactory.Menu());
+    }
+    public void SwitchToOriginal()
+    {
+        SwitchGameStage(_gameStageFactory.Original());
+    }
+    private void SwitchGameStage(GameStageBase newGameStage)
+    {
+        _currentGameStage.ExitGameStage();
+        _currentGameStage = newGameStage;
+        _currentGameStage.EnterGameStage();
     }
 }
 
@@ -23,19 +52,22 @@ public class GameController : MonoBehaviour
 
 
 
-public class GamemodeFactory
+public class GameStageFactory
 {
     private GameController _gameController;
 
-    public GamemodeFactory(GameController gameController)
+    public GameStageFactory(GameController gameController)
     {
         _gameController = gameController;
     }
 
 
-
-    public Gamemode_Base Original()
+    public GameStageBase Menu()
     {
-        return new Gamemode_Original(_gameController, this, "Original");
+        return new GameStageMenu(_gameController, this, "Menu");
+    }
+    public GameStageBase Original()
+    {
+        return new GameStageOriginal(_gameController, this, "Original");
     }
 }

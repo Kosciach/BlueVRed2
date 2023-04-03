@@ -11,6 +11,8 @@ public class PlayerTurretState : PlayerBaseState
     {
         _ctx.ShootingScript.enabled = true;
         _ctx.ShootingScript.ToggleShootingFromInput(false);
+        _ctx.PlayerStats.ToggleCorruption(false);
+        _ctx.PlayerStats.ResetCorruption();
     }
     public override void StateUpdate()
     {

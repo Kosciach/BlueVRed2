@@ -11,6 +11,7 @@ public class PlayerMoveShootState : PlayerBaseState
     {
         _ctx.ShootingScript.enabled = true;
         _ctx.ShootingScript.ToggleShootingFromInput(true);
+        _ctx.PlayerStats.ToggleCorruption(true);
     }
     public override void StateUpdate()
     {

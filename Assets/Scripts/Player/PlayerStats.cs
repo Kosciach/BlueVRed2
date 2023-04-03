@@ -30,15 +30,16 @@ public class PlayerStats : MonoBehaviour
     public static event PlayerStatsEvent Corrupted;
 
 
+    private bool _canCorrupt;
 
     private void Start()
     {
-        _corruptionLevel = 0;
-        _corruptionMaterial.color = new Color(_corruptionMaterial.color.r, _corruptionMaterial.color.g, _corruptionMaterial.color.b, _corruptionLevel);
-        _corruptionText.text = "Corruption: " + _corruptionLevel + "%";
+        ResetCorruption();
     }
     private void IncreaseCorruption()
     {
+        if (!_canCorrupt) return;
+
         _corruptionLevel += _corruptionIncreaseStrength;
         _corruptionLevel = Mathf.Clamp(_corruptionLevel, 0, 100);
 
@@ -52,6 +53,16 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void ResetCorruption()
+    {
+        _corruptionLevel = 0;
+        _corruptionMaterial.color = new Color(_corruptionMaterial.color.r, _corruptionMaterial.color.g, _corruptionMaterial.color.b, _corruptionLevel);
+        _corruptionText.text = "Corruption: " + _corruptionLevel + "%";
+    }
+    public void ToggleCorruption(bool enable)
+    {
+        _canCorrupt = enable;
+    }
 
     private void OnEnable()
     {

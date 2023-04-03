@@ -14,6 +14,7 @@ public class ScoreController : MonoBehaviour
     [SerializeField] int _score;
     [SerializeField] int _highScore;
 
+    private bool _canScore;
 
     private void Start()
     {
@@ -22,10 +23,16 @@ public class ScoreController : MonoBehaviour
     }
     private void AddScore()
     {
+        if (!_canScore) return;
+
         _score++;
         _scoreText.text = "Score: " + _score.ToString();
     }
 
+    public void ToggleScore(bool enable)
+    {
+        _canScore = enable;
+    }
 
 
     private void OnEnable()

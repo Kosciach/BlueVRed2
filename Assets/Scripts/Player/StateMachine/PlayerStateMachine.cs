@@ -14,6 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] MovementController _movementController; public MovementController MovementController { get { return _movementController; } }
     [SerializeField] AimingController _aimingController; public AimingController AimingController { get { return _aimingController; } }
     [SerializeField] ShootingScript _shootingScript; public ShootingScript ShootingScript { get { return _shootingScript; } }
+    [SerializeField] PlayerStats _playerStats; public PlayerStats PlayerStats { get { return _playerStats; } }
 
 
     [Space(20)]
@@ -33,7 +34,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Awake()
     {
         _factory = new PlayerStateFactory(this);
-        _currentState = _factory.MoveShoot();
+        _currentState = _factory.Turret();
         _currentState.StateEnter();
     }
 
@@ -45,5 +46,22 @@ public class PlayerStateMachine : MonoBehaviour
     private void FixedUpdate()
     {
         _currentState.StateFixedUpdate();
+    }
+
+
+
+    public void SwitchToMoveShoot()
+    {
+        ChangeState(_factory.MoveShoot());
+    }
+    public void SwitchToTurret()
+    {
+        ChangeState(_factory.Turret());
+    }
+    private void ChangeState(PlayerBaseState newState)
+    {
+        _currentState.StateExit();
+        _currentState = newState;
+        _currentState.StateEnter();
     }
 }
