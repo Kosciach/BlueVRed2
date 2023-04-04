@@ -21,6 +21,13 @@ public class GameController : MonoBehaviour
 
 
 
+    [Space(20)]
+    [Header("====DifficultyArea====")]
+    [SerializeField] int _difficultyIndex;
+    [SerializeField] string _difficultyName;
+
+
+
 
     private void Awake()
     {
@@ -39,6 +46,10 @@ public class GameController : MonoBehaviour
     public void SwitchToOriginal()
     {
         SwitchGameStage(_gameStageFactory.Original());
+    }
+    public void SwitchToExitGame()
+    {
+        SwitchGameStage(_gameStageFactory.Exit());
     }
     private void SwitchGameStage(GameStageBase newGameStage)
     {
@@ -69,5 +80,9 @@ public class GameStageFactory
     public GameStageBase Original()
     {
         return new GameStageOriginal(_gameController, this, "Original");
+    }
+    public GameStageBase Exit()
+    {
+        return new GameExitGameStage(_gameController, this, "Exit");
     }
 }

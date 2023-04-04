@@ -10,7 +10,7 @@ public class GameStageMenu : GameStageBase
 
     public override void EnterGameStage()
     {
-        _gameController.CanvasController.SwitchScreen(0);
+        _gameController.CanvasController.SwitchScreen("MenuStageScreen");
         _gameController.PlayerStateMachine.SwitchToTurret();
         _gameController.ScoreController.ToggleScore(false);
     }

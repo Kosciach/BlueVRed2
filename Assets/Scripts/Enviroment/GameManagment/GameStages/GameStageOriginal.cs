@@ -10,7 +10,7 @@ public class GameStageOriginal : GameStageBase
 
     public override void EnterGameStage()
     {
-        _gameController.CanvasController.SwitchScreen(1);
+        _gameController.CanvasController.SwitchScreen("OriginalStageScreen");
         _gameController.PlayerStateMachine.SwitchToMoveShoot();
         _gameController.ScoreController.ToggleScore(true);
     }
