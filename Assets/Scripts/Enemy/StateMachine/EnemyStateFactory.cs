@@ -18,4 +18,8 @@ public class EnemyStateFactory
     {
         return new EnemyMoveToPlayerState(_stateMachine, this, "MoveToPlayer");
     }
+    public EnemyBaseState Menu()
+    {
+        return new EnemyMenuState(_stateMachine, this, "Menu");
+    }
 }

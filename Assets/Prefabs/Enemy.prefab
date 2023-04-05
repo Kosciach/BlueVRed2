@@ -142,6 +142,7 @@ MonoBehaviour:
   _currentStateName: 
   _movementController: {fileID: 202595600067547260}
   _rotator: {fileID: 202595600067547261}
+  _enemyStats: {fileID: 202595600067547262}
 --- !u!114 &202595600067547262
 MonoBehaviour:
   m_ObjectHideFlags: 0

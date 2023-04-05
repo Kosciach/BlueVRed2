@@ -10,12 +10,17 @@ public class GameStageOriginal : GameStageBase
 
     public override void EnterGameStage()
     {
-        _gameController.CanvasController.SwitchScreen("OriginalStageScreen");
+        _gameController.CanvasController.SwitchScreen("OriginalScreen");
         _gameController.PlayerStateMachine.SwitchToMoveShoot();
         _gameController.ScoreController.ToggleScore(true);
+        _gameController.EnemySpawner.Switches.MoveToPlayer = true;
+    }
+    public override void CheckGameStageChange()
+    {
+        if (_gameController.Switches.Pause) ChangeGameStage(_gameStageFactory.Pause());
     }
     public override void ExitGameStage()
     {
-
+        _gameController.Switches.Original = false;
     }
 }

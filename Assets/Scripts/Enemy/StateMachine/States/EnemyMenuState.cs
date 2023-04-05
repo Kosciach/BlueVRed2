@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMoveToPlayerState : EnemyBaseState
+public class EnemyMenuState : EnemyBaseState
 {
-    public EnemyMoveToPlayerState(EnemyStateMachine ctx, EnemyStateFactory factory, string stateName) :base(ctx, factory, stateName) { }
+    public EnemyMenuState(EnemyStateMachine ctx, EnemyStateFactory factory, string stateName) :base(ctx, factory, stateName) { }
 
 
     public override void StateEnter()
     {
-        _ctx.EnemyStats.ToggleEmitDeath(true);
+        _ctx.EnemyStats.ToggleEmitDeath(false);
     }
     public override void StateUpdate()
     {
@@ -21,7 +21,7 @@ public class EnemyMoveToPlayerState : EnemyBaseState
     }
     public override void StateCheckChange()
     {
-
+        if (_ctx.EnemySpawner.Switches.MoveToPlayer) StateChange(_factory.MoveToPlayer());
     }
     public override void StateExit()
     {

@@ -14,28 +14,15 @@ public class EnemyStateMachine : MonoBehaviour
     [Header("====EnemyScripts====")]
     [SerializeField] EnemyMovementController _movementController; public EnemyMovementController MovementController { get { return _movementController; } }
     [SerializeField] EnemyRotator _rotator; public EnemyRotator Rotator { get { return _rotator; } }
-
-
-
-
-    [Space(20)]
-    [Header("====Switches====")]
-    [SerializeField] SwitchesClass _swiches; public SwitchesClass Switches { get { return _swiches; } set { _swiches = value; } }
-
-
-
-    [System.Serializable]
-    public class SwitchesClass
-    {
-
-    }
+    [SerializeField] EnemyStats _enemyStats; public EnemyStats EnemyStats { get { return _enemyStats; } }
+    [SerializeField] EnemySpawner _enemySpawner; public EnemySpawner EnemySpawner { get { return _enemySpawner; } set { _enemySpawner = value; } }
 
 
 
     private void Awake()
     {
         _factory = new EnemyStateFactory(this);
-        _currentState = _factory.MoveToPlayer();
+        _currentState = _factory.Menu();
         _currentState.StateEnter();
     }
 

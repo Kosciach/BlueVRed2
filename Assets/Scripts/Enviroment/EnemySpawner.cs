@@ -10,6 +10,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject _enemyPrefab;
     [SerializeField] Camera _mainCamera;
 
+    [Space(20)]
+    [Header("====Debugs====")]
+    [SerializeField] float _spawnRateIncrease;
+
+
 
     [Space(20)]
     [Header("====Settings====")]
@@ -19,10 +24,22 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _timeToSpawn;
     [Range(0, 20)]
     [SerializeField] float _spawnSpeed;
-
-
+    [Space(5)]
     [SerializeField] Vector3[] _spawnPoints;
     [SerializeField] int[] _directors;
+
+
+    [Space(20)]
+    [Header("====Switches====")]
+    [SerializeField] SwitchesClass _swiches; public SwitchesClass Switches { get { return _swiches; } set { _swiches = value; } }
+
+    [System.Serializable]
+    public class SwitchesClass
+    {
+        public bool MoveToPlayer;
+    }
+
+
 
 
     private void Start()
@@ -36,9 +53,19 @@ public class EnemySpawner : MonoBehaviour
         SpawnTimer();
     }
 
+
+
+
+
+
+    public void IncreaseSpawnRate(float spawnRateIncease, float maxSpawnRateIncrease)
+    {
+        if(_spawnRateIncrease < maxSpawnRateIncrease) _spawnRateIncrease += spawnRateIncease;
+        _spawnRateIncrease = Mathf.Clamp(_spawnRateIncrease, 0, maxSpawnRateIncrease); 
+    }
     private void SpawnTimer()
     {
-        _timeToSpawn -= _spawnSpeed * 10 * Time.deltaTime;
+        _timeToSpawn -= (_spawnSpeed * 10 + _spawnRateIncrease) * Time.deltaTime;
         _timeToSpawn = Mathf.Clamp(_timeToSpawn, 0, _timeBetweenSpawns);
 
         if(_timeToSpawn <= 0)
@@ -66,6 +93,6 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPoint = _spawnPoints[index] + offset;
 
 
-        Instantiate(_enemyPrefab, spawnPoint, Quaternion.identity);
+        Instantiate(_enemyPrefab, spawnPoint, Quaternion.identity).GetComponent<EnemyStateMachine>().EnemySpawner = this;
     }
 }

@@ -24,12 +24,16 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] float _scaleRescaleSpeed;
 
     private bool _isDead;
+    private bool _emitDeath;
 
     public delegate void EnemyStatsEvent();
     public static event EnemyStatsEvent Death;
     public static event EnemyStatsEvent PlayerCollision;
 
-
+    private void Awake()
+    {
+        _emitDeath = false;
+    }
     private void Start()
     {
         _health = Random.Range(25, 101);
@@ -57,13 +61,16 @@ public class EnemyStats : MonoBehaviour
 
         _isDead = true;
 
-        Death();
+        if(_emitDeath) Death();
         ShakeScript.Instance.Shake(2, 10);
         Instantiate(_enemyDeathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
-
+    public void ToggleEmitDeath(bool enable)
+    {
+        _emitDeath = enable;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

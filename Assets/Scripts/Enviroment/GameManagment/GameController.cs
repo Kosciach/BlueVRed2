@@ -23,8 +23,24 @@ public class GameController : MonoBehaviour
 
     [Space(20)]
     [Header("====DifficultyArea====")]
+    [SerializeField] DifficultyScript[] _difficulties;
     [SerializeField] int _difficultyIndex;
-    [SerializeField] string _difficultyName;
+    [SerializeField] DifficultyScript _currentDifficulty;
+    [SerializeField] int _enemiesLeftToSpawnRateIncrease;
+
+
+    [Space(20)]
+    [Header("====Switches====")]
+    [SerializeField] SwitchesClass _switches; public SwitchesClass Switches { get { return _switches; } set { _switches = value; } }
+
+    [System.Serializable]
+    public class SwitchesClass
+    {
+        public bool Menu;
+        public bool Original;
+        public bool Exit;
+        public bool Pause;
+    }
 
 
 
@@ -33,29 +49,77 @@ public class GameController : MonoBehaviour
     {
         if(Instance == null) Instance = this;
 
+
+        _difficultyIndex = 0;
+        _currentDifficulty = _difficulties[_difficultyIndex];
+        _canvasController.ChangeDifficultyName(_currentDifficulty.DifficultyName);
+
         _gameStageFactory = new GameStageFactory(this);
         _currentGameStage = _gameStageFactory.Menu();
         _currentGameStage.EnterGameStage();
+    }
+    private void Start()
+    {
+        _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
+    }
+    private void Update()
+    {
+        _currentGameStage.CheckGameStageChange();
+    }
+
+
+
+    public void SwitchDifficulty()
+    {
+        _difficultyIndex ++;
+        _difficultyIndex = _difficultyIndex > _difficulties.Length - 1 ? 0 : _difficultyIndex;
+
+        _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
+        _currentDifficulty = _difficulties[_difficultyIndex];
+        _canvasController.ChangeDifficultyName(_currentDifficulty.DifficultyName);
+    }
+    private void SpawnRateControll()
+    {
+        _enemiesLeftToSpawnRateIncrease--;
+        _enemiesLeftToSpawnRateIncrease = Mathf.Clamp(_enemiesLeftToSpawnRateIncrease, 0, _currentDifficulty.EnemiesToSpawnRateIncrease);
+
+        if (_enemiesLeftToSpawnRateIncrease == 0)
+        {
+            _enemySpawner.IncreaseSpawnRate(_currentDifficulty.EnemySpawnRateIncrease, _currentDifficulty.MaxEnemySpawnRateIncrease);
+            _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
+        }
     }
 
 
     public void SwitchToMainMenu()
     {
-        SwitchGameStage(_gameStageFactory.Menu());
+        _switches.Menu = true;
     }
     public void SwitchToOriginal()
     {
-        SwitchGameStage(_gameStageFactory.Original());
+        _switches.Original = true;
     }
     public void SwitchToExitGame()
     {
-        SwitchGameStage(_gameStageFactory.Exit());
+        _switches.Exit = true;
     }
-    private void SwitchGameStage(GameStageBase newGameStage)
+    public void SwitchPause()
     {
-        _currentGameStage.ExitGameStage();
-        _currentGameStage = newGameStage;
-        _currentGameStage.EnterGameStage();
+        _switches.Original = true;
+        _switches.Pause = !_switches.Pause;
+    }
+
+
+
+    private void OnEnable()
+    {
+        EnemyStats.Death += SpawnRateControll;
+        GameControllerInputController.PauseEvent += SwitchPause;
+    }
+    private void OnDisable()
+    {
+        EnemyStats.Death -= SpawnRateControll;
+        GameControllerInputController.PauseEvent -= SwitchPause;
     }
 }
 
@@ -83,6 +147,10 @@ public class GameStageFactory
     }
     public GameStageBase Exit()
     {
-        return new GameExitGameStage(_gameController, this, "Exit");
+        return new GameStageExitGame(_gameController, this, "Exit");
+    }
+    public GameStageBase Pause()
+    {
+        return new GameStagePause(_gameController, this, "Pause");
     }
 }

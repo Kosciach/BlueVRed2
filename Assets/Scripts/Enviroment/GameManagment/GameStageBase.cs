@@ -17,6 +17,7 @@ public abstract class GameStageBase
 
     public abstract void EnterGameStage();
     public abstract void ExitGameStage();
+    public abstract void CheckGameStageChange();
     public void ChangeGameStage(GameStageBase newGameStage)
     {
         ExitGameStage();
