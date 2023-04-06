@@ -26,6 +26,10 @@ public class EnemyMovementController : MonoBehaviour
     {
         _rigidbody.velocity = transform.up * _speedScale * _speed * 10 * Time.deltaTime;
     }
+    public void MoveGameOver()
+    {
+        _rigidbody.velocity = transform.up * (5-_speedScale) * _speed  * Time.deltaTime;
+    }
     public void UpdateSpeed(float health)
     {
         _speedScale = health;

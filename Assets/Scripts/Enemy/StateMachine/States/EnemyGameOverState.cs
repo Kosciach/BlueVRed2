@@ -10,6 +10,7 @@ public class EnemyGameOverState : EnemyBaseState
     public override void StateEnter()
     {
         _ctx.EnemyStats.ToggleEmitDeath(false);
+        _ctx.EnemyStats.ToggleEmitDeath(false);
     }
     public override void StateUpdate()
     {
@@ -17,7 +18,7 @@ public class EnemyGameOverState : EnemyBaseState
     }
     public override void StateFixedUpdate()
     {
-
+        _ctx.MovementController.MoveGameOver();
     }
     public override void StateCheckChange()
     {

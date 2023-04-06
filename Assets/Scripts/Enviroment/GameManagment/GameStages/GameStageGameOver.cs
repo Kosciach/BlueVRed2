@@ -11,6 +11,7 @@ public class GameStageGameOver : GameStageBase
     public override void EnterGameStage()
     {
         _gameController.EnemySpawner.Switches.GameOver = true;
+        _gameController.EnemySpawner.enabled = false;
     }
     public override void CheckGameStageChange()
     {

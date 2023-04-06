@@ -8,6 +8,14 @@ public class PlayerStateMachine : MonoBehaviour
     private PlayerStateFactory _factory;
     [SerializeField] string _currentStateName; public string CurrentStateName { get { return _currentStateName; } set { _currentStateName = value; } }
 
+
+    [Space(20)]
+    [Header("====References====")]
+    [SerializeField] Rigidbody2D _rigidbody; public Rigidbody2D Rigidbody { get { return _rigidbody; } set { _rigidbody = value; } }
+    [SerializeField] GameObject _playerDeathCircle; public GameObject PlayerDeathCircle { get { return _playerDeathCircle; } }
+    [SerializeField] PolygonCollider2D _collider; public PolygonCollider2D Collider { get { return _collider; } }
+
+
     [Space(20)]
     [Header("====PlayerScripts====")]
     [SerializeField] InputController _inputController; public InputController InputController { get { return _inputController; } }

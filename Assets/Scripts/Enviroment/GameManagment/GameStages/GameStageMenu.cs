@@ -23,5 +23,6 @@ public class GameStageMenu : GameStageBase
     public override void ExitGameStage()
     {
         _gameController.Switches.Menu = false;
+        _gameController.EnemySpawner.Switches.Menu = false;
     }
 }
