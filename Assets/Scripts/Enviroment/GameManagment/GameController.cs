@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
         public bool Original;
         public bool Exit;
         public bool Pause;
+        public bool GameOver;
     }
 
 
@@ -108,6 +109,10 @@ public class GameController : MonoBehaviour
         _switches.Original = true;
         _switches.Pause = !_switches.Pause;
     }
+    public void SwitchToGameOver()
+    {
+        _switches.GameOver = true;
+    }
 
 
 
@@ -115,11 +120,13 @@ public class GameController : MonoBehaviour
     {
         EnemyStats.Death += SpawnRateControll;
         GameControllerInputController.PauseEvent += SwitchPause;
+        PlayerStats.Corrupted += SwitchToGameOver;
     }
     private void OnDisable()
     {
         EnemyStats.Death -= SpawnRateControll;
         GameControllerInputController.PauseEvent -= SwitchPause;
+        PlayerStats.Corrupted -= SwitchToGameOver;
     }
 }
 
@@ -152,5 +159,9 @@ public class GameStageFactory
     public GameStageBase Pause()
     {
         return new GameStagePause(_gameController, this, "Pause");
+    }
+    public GameStageBase GameOver()
+    {
+        return new GameStageGameOver(_gameController, this, "GameOver");
     }
 }

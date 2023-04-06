@@ -13,6 +13,7 @@ public class PlayerTurretState : PlayerBaseState
         _ctx.ShootingScript.ToggleShootingFromInput(false);
         _ctx.PlayerStats.ToggleCorruption(false);
         _ctx.PlayerStats.ResetCorruption();
+        _ctx.AbilityController.enabled = false;
     }
     public override void StateUpdate()
     {
@@ -25,10 +26,10 @@ public class PlayerTurretState : PlayerBaseState
     }
     public override void StateCheckChange()
     {
-
+        if (_ctx.Switches.MoveShoot) StateChange(_factory.MoveShoot());
     }
     public override void StateExit()
     {
-
+        _ctx.Switches.Turret = false;
     }
 }

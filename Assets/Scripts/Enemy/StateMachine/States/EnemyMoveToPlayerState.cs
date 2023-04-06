@@ -21,7 +21,8 @@ public class EnemyMoveToPlayerState : EnemyBaseState
     }
     public override void StateCheckChange()
     {
-
+        if (_ctx.EnemySpawner.Switches.GameOver) StateChange(_factory.GameOver());
+        else if(_ctx.EnemySpawner.Switches.Menu) StateChange(_factory.Menu());
     }
     public override void StateExit()
     {

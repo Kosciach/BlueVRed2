@@ -19,6 +19,7 @@ public class InputController : MonoBehaviour
 
     public delegate void InputEvent();
     public static event InputEvent Shoot;
+    public static event InputEvent UseAbility;
 
 
     private void Awake()
@@ -28,6 +29,7 @@ public class InputController : MonoBehaviour
     private void Start()
     {
         _playerInputs.Player.Shoot.performed += ctx => Shoot();
+        _playerInputs.Player.UseAbility.performed += ctx => UseAbility();
     }
 
     private void Update()

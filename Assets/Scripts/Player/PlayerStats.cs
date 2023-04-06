@@ -32,10 +32,32 @@ public class PlayerStats : MonoBehaviour
 
     private bool _canCorrupt;
 
+
+
+
+
+
+
+
+
+
     private void Start()
     {
         ResetCorruption();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
     private void IncreaseCorruption()
     {
         if (!_canCorrupt) return;
@@ -53,6 +75,24 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+
+
+
+
+
+
+
+
+    public void ReduceCorruption()
+    {
+        if (!_canCorrupt) return;
+
+        _corruptionLevel -= 20;
+        _corruptionLevel = Mathf.Clamp(_corruptionLevel, 0, 100);
+
+        _corruptionMaterial.color = new Color(_corruptionMaterial.color.r, _corruptionMaterial.color.g, _corruptionMaterial.color.b, _corruptionLevel / 100);
+        _corruptionText.text = "Corruption: " + _corruptionLevel + "%";
+    }
     public void ResetCorruption()
     {
         _corruptionLevel = 0;
@@ -63,6 +103,17 @@ public class PlayerStats : MonoBehaviour
     {
         _canCorrupt = enable;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     private void OnEnable()
     {

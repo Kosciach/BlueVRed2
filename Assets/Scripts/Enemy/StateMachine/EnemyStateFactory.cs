@@ -22,4 +22,8 @@ public class EnemyStateFactory
     {
         return new EnemyMenuState(_stateMachine, this, "Menu");
     }
+    public EnemyBaseState GameOver()
+    {
+        return new EnemyGameOverState(_stateMachine, this, "GameOver");
+    }
 }

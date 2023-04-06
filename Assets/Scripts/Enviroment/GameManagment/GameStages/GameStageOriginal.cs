@@ -18,9 +18,11 @@ public class GameStageOriginal : GameStageBase
     public override void CheckGameStageChange()
     {
         if (_gameController.Switches.Pause) ChangeGameStage(_gameStageFactory.Pause());
+        else if (_gameController.Switches.GameOver) ChangeGameStage(_gameStageFactory.GameOver());
     }
     public override void ExitGameStage()
     {
         _gameController.Switches.Original = false;
+        _gameController.EnemySpawner.Switches.MoveToPlayer = false;
     }
 }

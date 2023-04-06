@@ -16,6 +16,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] float _playerSpeed;
     [Range(0, 40)]
     [SerializeField] float _accelerationSpeed;
+    [Range(0, 40)]
+    [SerializeField] float _dashSpeed;
 
 
     private Vector3 _movementVectorTarget;
@@ -30,5 +32,10 @@ public class MovementController : MonoBehaviour
         _movementVector = Vector3.Lerp(_movementVector, _movementVectorTarget, _accelerationSpeed * Time.deltaTime);
 
         _rigidbody.velocity = _movementVector * _playerSpeed * 10 * Time.deltaTime;
+    }
+    public void Dash()
+    {
+        _movementVector = transform.up * _dashSpeed;
+        _rigidbody.velocity = _movementVector;
     }
 }

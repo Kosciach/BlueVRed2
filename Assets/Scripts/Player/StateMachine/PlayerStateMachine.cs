@@ -15,18 +15,21 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] AimingController _aimingController; public AimingController AimingController { get { return _aimingController; } }
     [SerializeField] ShootingScript _shootingScript; public ShootingScript ShootingScript { get { return _shootingScript; } }
     [SerializeField] PlayerStats _playerStats; public PlayerStats PlayerStats { get { return _playerStats; } }
+    [SerializeField] AbilitiesScript _abilityController; public AbilitiesScript AbilityController { get { return _abilityController; } }
 
 
     [Space(20)]
     [Header("====Switches====")]
-    [SerializeField] SwitchesClass _swiches; public SwitchesClass Switches { get { return _swiches; } set { _swiches = value; } }
+    [SerializeField] SwitchesClass _switches; public SwitchesClass Switches { get { return _switches; } set { _switches = value; } }
 
 
 
     [System.Serializable]
     public class SwitchesClass
     {
-
+        public bool Turret;
+        public bool MoveShoot;
+        public bool Death;
     }
 
 
@@ -52,16 +55,24 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void SwitchToMoveShoot()
     {
-        ChangeState(_factory.MoveShoot());
+        _switches.MoveShoot = true;
     }
     public void SwitchToTurret()
     {
-        ChangeState(_factory.Turret());
+        _switches.Turret = true;
     }
-    private void ChangeState(PlayerBaseState newState)
+    public void SwitchToDeath()
     {
-        _currentState.StateExit();
-        _currentState = newState;
-        _currentState.StateEnter();
+        _switches.Death = true;
+    }
+
+
+    public void OnEnable()
+    {
+        PlayerStats.Corrupted += SwitchToDeath;
+    }
+    public void OnDisable()
+    {
+        PlayerStats.Corrupted -= SwitchToDeath;
     }
 }

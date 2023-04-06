@@ -22,4 +22,8 @@ public class PlayerStateFactory
     {
         return new PlayerTurretState(_stateMachine, this, "Turret");
     }
+    public PlayerBaseState Death()
+    {
+        return new PlayerDeathState(_stateMachine, this, "Death");
+    }
 }

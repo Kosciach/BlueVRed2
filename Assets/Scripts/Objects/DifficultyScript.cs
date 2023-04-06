@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Difficulty", menuName = "ScriptableObjects")]
+[CreateAssetMenu(fileName = "Difficulty", menuName = "ScriptableObjects/Difficulty")]
 public class DifficultyScript : ScriptableObject
 {
     public string DifficultyName;

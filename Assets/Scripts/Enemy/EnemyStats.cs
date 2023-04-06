@@ -55,7 +55,7 @@ public class EnemyStats : MonoBehaviour
 
         if (_health <= 0) Die();
     }
-    private void Die()
+    public void Die()
     {
         if (_isDead) return;
 

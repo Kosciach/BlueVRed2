@@ -12,6 +12,7 @@ public class PlayerMoveShootState : PlayerBaseState
         _ctx.ShootingScript.enabled = true;
         _ctx.ShootingScript.ToggleShootingFromInput(true);
         _ctx.PlayerStats.ToggleCorruption(true);
+        _ctx.AbilityController.enabled = true;
     }
     public override void StateUpdate()
     {
@@ -23,10 +24,11 @@ public class PlayerMoveShootState : PlayerBaseState
     }
     public override void StateCheckChange()
     {
-
+        if (_ctx.Switches.Turret) StateChange(_factory.Turret());
+        else if (_ctx.Switches.Death) StateChange(_factory.Death());
     }
     public override void StateExit()
     {
-
+        _ctx.Switches.MoveShoot = false;
     }
 }

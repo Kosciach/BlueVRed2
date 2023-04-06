@@ -36,7 +36,9 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
     public class SwitchesClass
     {
+        public bool Menu;
         public bool MoveToPlayer;
+        public bool GameOver;
     }
 
 
