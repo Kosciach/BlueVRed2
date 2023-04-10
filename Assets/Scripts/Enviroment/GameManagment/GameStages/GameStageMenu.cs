@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStageMenu : GameStageBase
 {
@@ -10,7 +11,8 @@ public class GameStageMenu : GameStageBase
 
     public override void EnterGameStage()
     {
-        _gameController.CanvasController.SwitchScreen("MenuScreen");
+        Time.timeScale = 1;
+        CanvasController.Instance.SwitchScreen("MenuScreen");
         _gameController.PlayerStateMachine.SwitchToTurret();
         _gameController.ScoreController.ToggleScore(false);
         _gameController.EnemySpawner.Switches.MoveToPlayer = false;

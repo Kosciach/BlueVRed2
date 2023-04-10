@@ -14,7 +14,6 @@ public class PlayerDeathState : PlayerBaseState
     public override void StateEnter()
     {
         _ctx.Collider.enabled = false;
-        _ctx.ShootingScript.enabled = true;
         _ctx.ShootingScript.ToggleShootingFromInput(false);
         _ctx.PlayerStats.ToggleCorruption(false);
         _ctx.AbilityController.enabled = false;
@@ -41,7 +40,7 @@ public class PlayerDeathState : PlayerBaseState
     }
     public override void StateExit()
     {
-
+        _ctx.Switches.Death = false;
     }
 
 

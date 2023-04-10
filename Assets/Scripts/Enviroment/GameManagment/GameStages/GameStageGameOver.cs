@@ -19,6 +19,6 @@ public class GameStageGameOver : GameStageBase
     }
     public override void ExitGameStage()
     {
-
+        _gameController.Switches.GameOver = false;
     }
 }

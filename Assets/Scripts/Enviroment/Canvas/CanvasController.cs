@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class CanvasController : MonoBehaviour
 {
+    public static CanvasController Instance { get; private set; } 
+
     [Header("====References====")]
     [SerializeField] GameObject[] _screens;
     [SerializeField] TextMeshProUGUI[] _difficultyNames;
+    [SerializeField] TextMeshProUGUI _abilityName;
 
     Dictionary<string, int> _screenKeys = new Dictionary<string, int>();
 
@@ -20,6 +23,7 @@ public class CanvasController : MonoBehaviour
         _screenKeys.Add("CreditsScreen", 3);
         _screenKeys.Add("OriginalScreen", 4);
         _screenKeys.Add("PauseScreen", 5);
+        Instance = this;
     }
     public void SwitchScreen(string screenKey)
     {
@@ -36,5 +40,9 @@ public class CanvasController : MonoBehaviour
     public void ChangeDifficultyName(string difficultyName)
     {
         foreach(TextMeshProUGUI difficultyNameText in _difficultyNames) difficultyNameText.text = "Difficulty: "+difficultyName;
+    }
+    public void SetAbilityName(string abilityName)
+    {
+        _abilityName.text = ("Ability: "+abilityName);
     }
 }

@@ -11,7 +11,7 @@ public class GameStagePause : GameStageBase
     public override void EnterGameStage()
     {
         Time.timeScale = 0f;
-        _gameController.CanvasController.SwitchScreen("PauseScreen");
+        CanvasController.Instance.SwitchScreen("PauseScreen");
     }
     public override void CheckGameStageChange()
     {
@@ -22,7 +22,7 @@ public class GameStagePause : GameStageBase
     public override void ExitGameStage()
     {
         Time.timeScale = 1f;
-        _gameController.CanvasController.SwitchScreen("OriginalScreen");
+        CanvasController.Instance.SwitchScreen("OriginalScreen");
         _gameController.Switches.Pause = false;
     }
 }

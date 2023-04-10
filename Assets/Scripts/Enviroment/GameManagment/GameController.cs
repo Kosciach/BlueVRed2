@@ -2,10 +2,11 @@ using Shapes2D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public static GameController Instance;
+    public static GameController Instance { get; private set; } 
     private GameStageBase _currentGameStage; public GameStageBase CurrentGameStage { get { return _currentGameStage; } set { _currentGameStage = value; } }
     private GameStageFactory _gameStageFactory;
     [SerializeField] string _currentGameStageName; public string CurrentGameStageName { get { return _currentGameStageName; } set { _currentGameStageName = value; } }
@@ -14,7 +15,6 @@ public class GameController : MonoBehaviour
 
     [Space(20)]
     [Header("====References====")]
-    [SerializeField] CanvasController _canvasController; public CanvasController CanvasController { get { return _canvasController; } }
     [SerializeField] PlayerStateMachine _playerStateMachine; public PlayerStateMachine PlayerStateMachine { get { return _playerStateMachine; } }
     [SerializeField] EnemySpawner _enemySpawner; public EnemySpawner EnemySpawner { get { return _enemySpawner; } }
     [SerializeField] ScoreController _scoreController; public ScoreController ScoreController { get { return _scoreController; } }
@@ -48,12 +48,12 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null) Instance = this;
+        if (Instance != null && Instance != this) Destroy(Instance.gameObject);
 
 
         _difficultyIndex = 0;
         _currentDifficulty = _difficulties[_difficultyIndex];
-        _canvasController.ChangeDifficultyName(_currentDifficulty.DifficultyName);
+        CanvasController.Instance.ChangeDifficultyName(_currentDifficulty.DifficultyName);
 
         _gameStageFactory = new GameStageFactory(this);
         _currentGameStage = _gameStageFactory.Menu();
@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour
 
         _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
         _currentDifficulty = _difficulties[_difficultyIndex];
-        _canvasController.ChangeDifficultyName(_currentDifficulty.DifficultyName);
+        CanvasController.Instance.ChangeDifficultyName(_currentDifficulty.DifficultyName);
     }
     private void SpawnRateControll()
     {
@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
 
     public void SwitchToMainMenu()
     {
-        _switches.Menu = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void SwitchToOriginal()
     {

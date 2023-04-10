@@ -16,7 +16,13 @@ public class AbilitiesScript : MonoBehaviour
         int chance = Random.Range(0, 101);
         Ability tempAbility = _abilities[index];
 
-        if (tempAbility.DropChance > chance) _currentAbility = tempAbility;
+
+        //Get ability
+        if (tempAbility.DropChance > chance)
+        {
+            _currentAbility = tempAbility;
+            CanvasController.Instance.SetAbilityName(_currentAbility.name);
+        }
     }
     private void UseAbility()
     {
@@ -25,6 +31,7 @@ public class AbilitiesScript : MonoBehaviour
         Debug.Log("Use Ability!");
         Instantiate(_currentAbility.AbilityPrefab, transform.position, Quaternion.identity);
         _currentAbility = null;
+        CanvasController.Instance.SetAbilityName("-------");
     }
 
 

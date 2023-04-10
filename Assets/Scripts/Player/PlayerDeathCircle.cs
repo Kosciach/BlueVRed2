@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDeathCircle : MonoBehaviour
 {
     [SerializeField] Camera _mainCamera;
     [Range(0, 10)]
-    [SerializeField] float _expandSpeed;
+    [SerializeField] float _expandDuration;
 
 
 
@@ -19,9 +20,10 @@ public class PlayerDeathCircle : MonoBehaviour
 
     private void Start()
     {
-        transform.LeanScale(Vector3.one * _mainCamera.orthographicSize * 3.5f, _expandSpeed).setEaseOutCirc().setOnComplete(() =>
+        transform.LeanScale(Vector3.one * _mainCamera.orthographicSize * 3.01f, _expandDuration).setOnComplete(() =>
         {
             Debug.Log("The end game");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
     }
 
