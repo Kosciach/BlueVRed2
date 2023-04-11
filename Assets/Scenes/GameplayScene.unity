@@ -253,6 +253,8 @@ MonoBehaviour:
   - {fileID: 1551330770}
   - {fileID: 1146282997}
   _abilityName: {fileID: 1405073860}
+  _scoreText: {fileID: 1683748630}
+  _highScoreText: {fileID: 1790909674}
 --- !u!1 &147534178
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,9 +400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449c002991527804bb90beb41d541d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreText: {fileID: 1683748630}
   _score: 0
   _highScore: 0
+  _difficultyName: 
 --- !u!4 &232883507
 Transform:
   m_ObjectHideFlags: 0
@@ -3288,6 +3290,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1118275156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118275158}
+  - component: {fileID: 1118275157}
+  m_Layer: 0
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1118275157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118275156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2f24f575a1dbe49b7120fcaaae678a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundSources: []
+  _musicSources: []
+  _soundSliders: []
+  _musicSliders: []
+  _soundKey: Sound
+  _musicKey: Music
+--- !u!4 &1118275158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118275156}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.22965844, y: -0.18867531, z: -0.064825505}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1146282995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,8 +4828,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -854.27997, y: -395.19995}
-  m_SizeDelta: {x: 364.63, y: 100}
+  m_AnchoredPosition: {x: -783.6697, y: -395.19995}
+  m_SizeDelta: {x: 608.114, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1790909672
 GameObject:
@@ -4814,8 +4866,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -837.93445, y: -453.49997}
-  m_SizeDelta: {x: 420.99, y: 100}
+  m_AnchoredPosition: {x: -784.2017, y: -453.49997}
+  m_SizeDelta: {x: 606.275, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1790909674
 MonoBehaviour:

@@ -51,17 +51,20 @@ public class GameController : MonoBehaviour
         if (Instance != null && Instance != this) Destroy(Instance.gameObject);
 
 
-        _difficultyIndex = 0;
-        _currentDifficulty = _difficulties[_difficultyIndex];
-        CanvasController.Instance.ChangeDifficultyName(_currentDifficulty.DifficultyName);
-
+        //Game stage
         _gameStageFactory = new GameStageFactory(this);
         _currentGameStage = _gameStageFactory.Menu();
         _currentGameStage.EnterGameStage();
     }
     private void Start()
     {
+        //Difficulty 
+        _difficultyIndex = 0;
+        _currentDifficulty = _difficulties[_difficultyIndex];
         _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
+
+        CanvasController.Instance.ChangeDifficultyName(_currentDifficulty.DifficultyName);
+        _scoreController.SetDifficultyName(_currentDifficulty.name);
     }
     private void Update()
     {
@@ -75,9 +78,11 @@ public class GameController : MonoBehaviour
         _difficultyIndex ++;
         _difficultyIndex = _difficultyIndex > _difficulties.Length - 1 ? 0 : _difficultyIndex;
 
-        _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
         _currentDifficulty = _difficulties[_difficultyIndex];
+        _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
+
         CanvasController.Instance.ChangeDifficultyName(_currentDifficulty.DifficultyName);
+        _scoreController.SetDifficultyName(_currentDifficulty.name);
     }
     private void SpawnRateControll()
     {

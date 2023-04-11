@@ -11,6 +11,8 @@ public class CanvasController : MonoBehaviour
     [SerializeField] GameObject[] _screens;
     [SerializeField] TextMeshProUGUI[] _difficultyNames;
     [SerializeField] TextMeshProUGUI _abilityName;
+    [SerializeField] TextMeshProUGUI _scoreText;
+    [SerializeField] TextMeshProUGUI _highScoreText;
 
     Dictionary<string, int> _screenKeys = new Dictionary<string, int>();
 
@@ -44,5 +46,10 @@ public class CanvasController : MonoBehaviour
     public void SetAbilityName(string abilityName)
     {
         _abilityName.text = ("Ability: "+abilityName);
+    }
+    public void UpdateScores(int score, int highScore)
+    {
+        _scoreText.text = "Score: " + score;
+        _highScoreText.text = "HighScore: " + highScore;
     }
 }
