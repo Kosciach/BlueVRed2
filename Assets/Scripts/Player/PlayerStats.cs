@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerStats : MonoBehaviour
 {
     [Header("====References====")]
     [SerializeField] TextMeshProUGUI _corruptionText;
+    [SerializeField] Material _baseMaterial;
     [SerializeField] Material _corruptionMaterial;
+    [SerializeField] Material _finalMaterial;
+    [SerializeField] VisualEffect _playerHitEffect;
+
 
 
     [Space(20)]
@@ -18,7 +23,7 @@ public class PlayerStats : MonoBehaviour
 
 
     [Space(20)]
-    [Header("====Debug====")]
+    [Header("====Settings====")]
     [Range(0, 100)]
     [SerializeField] float _corruptionIncreaseStrength;
 
@@ -45,7 +50,10 @@ public class PlayerStats : MonoBehaviour
     {
         ResetCorruption();
     }
-
+    private void Update()
+    {
+        UpdateColor();
+    }
 
 
 
@@ -65,7 +73,6 @@ public class PlayerStats : MonoBehaviour
         _corruptionLevel += _corruptionIncreaseStrength;
         _corruptionLevel = Mathf.Clamp(_corruptionLevel, 0, 100);
 
-        _corruptionMaterial.color = new Color(_corruptionMaterial.color.r, _corruptionMaterial.color.g, _corruptionMaterial.color.b, _corruptionLevel/100);
         _corruptionText.text = "Corruption: " + _corruptionLevel + "%";
 
         if(_corruptionLevel == 100 && !_isCorrupted)
@@ -75,6 +82,12 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    private void UpdateColor()
+    {
+        _finalMaterial.color = Color.Lerp(_baseMaterial.color, _corruptionMaterial.color, _corruptionLevel/100);
+
+        _playerHitEffect.SetVector4("ParticleColor", _finalMaterial.color);
+    }
 
 
 
@@ -90,13 +103,11 @@ public class PlayerStats : MonoBehaviour
         _corruptionLevel -= 20;
         _corruptionLevel = Mathf.Clamp(_corruptionLevel, 0, 100);
 
-        _corruptionMaterial.color = new Color(_corruptionMaterial.color.r, _corruptionMaterial.color.g, _corruptionMaterial.color.b, _corruptionLevel / 100);
         _corruptionText.text = "Corruption: " + _corruptionLevel + "%";
     }
     public void ResetCorruption()
     {
         _corruptionLevel = 0;
-        _corruptionMaterial.color = new Color(_corruptionMaterial.color.r, _corruptionMaterial.color.g, _corruptionMaterial.color.b, _corruptionLevel);
         _corruptionText.text = "Corruption: " + _corruptionLevel + "%";
     }
     public void ToggleCorruption(bool enable)
