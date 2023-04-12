@@ -78,6 +78,7 @@ public class EnemyStats : MonoBehaviour
             PlayerCollision();
             Die();
         }
+        else if (collision.CompareTag("PlayerShield")) Die();
     }
 
 

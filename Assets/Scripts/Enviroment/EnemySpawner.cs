@@ -76,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
             _timeToSpawn = _timeBetweenSpawns;
         }
     }
-    private void Spawn()
+    public void Spawn()
     {
 
         _spawnPoints[0] = (Vector3.right * _mainCamera.orthographicSize * _mainCamera.aspect);

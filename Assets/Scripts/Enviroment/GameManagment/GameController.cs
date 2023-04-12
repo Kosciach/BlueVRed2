@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
         public bool Pause;
         public bool GameOver;
         public bool Result;
+        public bool Exiting;
     }
 
 
@@ -109,7 +110,7 @@ public class GameController : MonoBehaviour
 
     public void SwitchToMainMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _switches.Exiting = true;
     }
     public void StartGame()
     {
@@ -198,5 +199,9 @@ public class GameStageFactory
     public GameStageBase Result()
     {
         return new GameStageResult(_gameController, this, MethodBase.GetCurrentMethod().Name);
+    }
+    public GameStageBase Exiting()
+    {
+        return new GameStageExiting(_gameController, this, MethodBase.GetCurrentMethod().Name);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStageResult : GameStageBase
 {
@@ -15,10 +16,10 @@ public class GameStageResult : GameStageBase
     }
     public override void CheckGameStageChange()
     {
-
+        if (_gameController.Switches.Exiting) ChangeGameStage(_gameStageFactory.Exiting());
     }
     public override void ExitGameStage()
     {
-
+        _gameController.Switches.Result = false;
     }
 }

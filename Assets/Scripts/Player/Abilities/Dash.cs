@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
+    [Range(0, 5)]
+    [SerializeField] float _duration;
 
     private MovementController _movementController;
     private PlayerStats _playerStats;
@@ -15,14 +17,26 @@ public class Dash : MonoBehaviour
     }
     private void Start()
     {
-        Destroy(gameObject, 0.5f);
+        transform.parent = _playerStats.transform;
+        transform.localPosition = new Vector3(0, 0.64f, 0);
+        transform.LeanScale(new Vector3(1.36f, 1, 1), 0.2f);
+        transform.rotation = _playerStats.transform.rotation;
+
         _playerStats.ToggleCorruption(false);
         _movementController.Dash();
+
+        StartCoroutine(HideShield());
     }
 
 
-    private void OnDestroy()
+    IEnumerator HideShield()
     {
-        _playerStats.ToggleCorruption(true);
+        yield return new WaitForSeconds(_duration);
+
+        transform.LeanScale(Vector3.zero, 0.2f).setOnComplete(() =>
+        {
+            _playerStats.ToggleCorruption(true);
+            Destroy(gameObject);
+        });
     }
 }

@@ -6113,6 +6113,7 @@ MonoBehaviour:
     Pause: 0
     GameOver: 0
     Result: 0
+    Exiting: 0
 --- !u!114 &1166976137
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ TagManager:
   - EnergyCircle
   - Enemy
   - Wall
+  - PlayerShield
   layers:
   - Default
   - TransparentFX

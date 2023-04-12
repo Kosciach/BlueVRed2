@@ -96,11 +96,11 @@ public class PlayerStats : MonoBehaviour
 
 
 
-    public void ReduceCorruption()
+    public void ReduceCorruption(int corruptionReduction, bool overrideBlockade)
     {
-        if (!_canCorrupt) return;
+        if (!_canCorrupt && !overrideBlockade) return;
 
-        _corruptionLevel -= 20;
+        _corruptionLevel -= corruptionReduction;
         _corruptionLevel = Mathf.Clamp(_corruptionLevel, 0, 100);
 
         _corruptionText.text = "Corruption: " + _corruptionLevel + "%";

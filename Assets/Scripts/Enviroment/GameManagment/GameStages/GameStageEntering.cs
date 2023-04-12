@@ -11,7 +11,7 @@ public class GameStageEntering : GameStageBase
     public override void EnterGameStage()
     {
         _gameController.EnemySpawner.enabled = false;
-
+        _gameController.EnemySpawner.Spawn();
         LeanTween.value(_gameController.CanvasGroup.alpha, 0, 0.5f).setOnUpdate((float val) => { _gameController.CanvasGroup.alpha = val; }).setOnComplete(() => { _gameController.Switches.Original = true; });
     }
     public override void CheckGameStageChange()

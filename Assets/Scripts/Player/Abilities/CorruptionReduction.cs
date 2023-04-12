@@ -14,7 +14,7 @@ public class CorruptionReduction : MonoBehaviour
     }
     private void Start()
     {
-        _playerStats.ReduceCorruption();
+        _playerStats.ReduceCorruption(20, false);
         Destroy(gameObject);
     }
 }
