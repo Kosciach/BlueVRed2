@@ -9,6 +9,8 @@ public class PlayerDeathCircle : MonoBehaviour
     [Range(0, 10)]
     [SerializeField] float _expandDuration;
 
+    public delegate void DeathCircleEvent();
+    public static event DeathCircleEvent CircleEnded;
 
 
 
@@ -23,7 +25,8 @@ public class PlayerDeathCircle : MonoBehaviour
         transform.LeanScale(Vector3.one * _mainCamera.orthographicSize * 3.01f, _expandDuration).setOnComplete(() =>
         {
             Debug.Log("The end game");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            CircleEnded();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
     }
 

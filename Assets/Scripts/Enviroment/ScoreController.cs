@@ -64,7 +64,12 @@ public class ScoreController : MonoBehaviour
         GetHighScore();
     }
 
-
+    public void ResetHighScore(string highScoreName)
+    {
+        PlayerPrefs.SetInt("HighScore_"+highScoreName, 0);
+        GetHighScore();
+        CanvasController.Instance.SetupHighScoreScreen();
+    }
 
 
 

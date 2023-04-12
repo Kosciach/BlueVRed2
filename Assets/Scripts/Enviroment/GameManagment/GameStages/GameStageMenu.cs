@@ -19,7 +19,7 @@ public class GameStageMenu : GameStageBase
     }
     public override void CheckGameStageChange()
     {
-        if (_gameController.Switches.Original) ChangeGameStage(_gameStageFactory.Original());
+        if (_gameController.Switches.Entering) ChangeGameStage(_gameStageFactory.Entering());
         else if (_gameController.Switches.Exit) ChangeGameStage(_gameStageFactory.Exit());
     }
     public override void ExitGameStage()

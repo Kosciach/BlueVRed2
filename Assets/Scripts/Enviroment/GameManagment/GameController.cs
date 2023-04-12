@@ -1,6 +1,7 @@
 using Shapes2D;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,7 @@ public class GameController : MonoBehaviour
     [SerializeField] PlayerStateMachine _playerStateMachine; public PlayerStateMachine PlayerStateMachine { get { return _playerStateMachine; } }
     [SerializeField] EnemySpawner _enemySpawner; public EnemySpawner EnemySpawner { get { return _enemySpawner; } }
     [SerializeField] ScoreController _scoreController; public ScoreController ScoreController { get { return _scoreController; } }
+    [SerializeField] CanvasGroup _canvasGroup; public CanvasGroup CanvasGroup { get { return _canvasGroup; } }
 
 
 
@@ -37,11 +39,19 @@ public class GameController : MonoBehaviour
     public class SwitchesClass
     {
         public bool Menu;
+        public bool Entering;
         public bool Original;
         public bool Exit;
         public bool Pause;
         public bool GameOver;
+        public bool Result;
     }
+
+
+
+
+    public delegate void GameControllerEvent();
+    public static event GameControllerEvent KillAllEnemies;
 
 
 
@@ -101,9 +111,10 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void SwitchToOriginal()
+    public void StartGame()
     {
-        _switches.Original = true;
+        KillAllEnemies();
+        _switches.Entering = true;
     }
     public void SwitchToExitGame()
     {
@@ -118,6 +129,15 @@ public class GameController : MonoBehaviour
     {
         _switches.GameOver = true;
     }
+    public void SwitchToMenuFromPause()
+    {
+        _switches.GameOver = true;
+        _playerStateMachine.SwitchToDeath();
+    }
+    public void SwitchToResult()
+    {
+        _switches.Result = true;
+    }
 
 
 
@@ -126,12 +146,14 @@ public class GameController : MonoBehaviour
         EnemyStats.Death += SpawnRateControll;
         GameControllerInputController.PauseEvent += SwitchPause;
         PlayerStats.Corrupted += SwitchToGameOver;
+        PlayerDeathCircle.CircleEnded += SwitchToResult;
     }
     private void OnDisable()
     {
         EnemyStats.Death -= SpawnRateControll;
         GameControllerInputController.PauseEvent -= SwitchPause;
         PlayerStats.Corrupted -= SwitchToGameOver;
+        PlayerDeathCircle.CircleEnded -= SwitchToResult;
     }
 }
 
@@ -151,22 +173,30 @@ public class GameStageFactory
 
     public GameStageBase Menu()
     {
-        return new GameStageMenu(_gameController, this, "Menu");
+        return new GameStageMenu(_gameController, this, MethodBase.GetCurrentMethod().Name);
     }
     public GameStageBase Original()
     {
-        return new GameStageOriginal(_gameController, this, "Original");
+        return new GameStageOriginal(_gameController, this, MethodBase.GetCurrentMethod().Name);
     }
     public GameStageBase Exit()
     {
-        return new GameStageExitGame(_gameController, this, "Exit");
+        return new GameStageExitGame(_gameController, this, MethodBase.GetCurrentMethod().Name);
     }
     public GameStageBase Pause()
     {
-        return new GameStagePause(_gameController, this, "Pause");
+        return new GameStagePause(_gameController, this, MethodBase.GetCurrentMethod().Name);
     }
     public GameStageBase GameOver()
     {
-        return new GameStageGameOver(_gameController, this, "GameOver");
+        return new GameStageGameOver(_gameController, this, MethodBase.GetCurrentMethod().Name);
+    }
+    public GameStageBase Entering()
+    {
+        return new GameStageEntering(_gameController, this, MethodBase.GetCurrentMethod().Name);
+    }
+    public GameStageBase Result()
+    {
+        return new GameStageResult(_gameController, this, MethodBase.GetCurrentMethod().Name);
     }
 }

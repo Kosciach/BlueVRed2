@@ -11,9 +11,13 @@ public class GameStageOriginal : GameStageBase
     public override void EnterGameStage()
     {
         CanvasController.Instance.SwitchScreen("OriginalScreen");
-        _gameController.PlayerStateMachine.SwitchToMoveShoot();
-        _gameController.ScoreController.ToggleScore(true);
-        _gameController.EnemySpawner.Switches.MoveToPlayer = true;
+        LeanTween.value(_gameController.CanvasGroup.alpha, 1, 0.5f).setOnUpdate((float val) => { _gameController.CanvasGroup.alpha = val; }).setOnComplete(() =>
+        {
+            _gameController.PlayerStateMachine.SwitchToMoveShoot();
+            _gameController.ScoreController.ToggleScore(true);
+            _gameController.EnemySpawner.enabled = true;
+            _gameController.EnemySpawner.Switches.MoveToPlayer = true;
+        });
     }
     public override void CheckGameStageChange()
     {

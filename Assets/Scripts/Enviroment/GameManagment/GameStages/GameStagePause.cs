@@ -17,7 +17,7 @@ public class GameStagePause : GameStageBase
     {
         if (!_gameController.Switches.Pause) ChangeGameStage(_gameStageFactory.Original());
         else if (_gameController.Switches.Exit) ChangeGameStage(_gameStageFactory.Exit());
-        else if (_gameController.Switches.Menu) ChangeGameStage(_gameStageFactory.Menu());
+        else if (_gameController.Switches.GameOver) ChangeGameStage(_gameStageFactory.GameOver());
     }
     public override void ExitGameStage()
     {

@@ -79,4 +79,16 @@ public class EnemyStats : MonoBehaviour
             Die();
         }
     }
+
+
+
+
+    private void OnEnable()
+    {
+        GameController.KillAllEnemies += Die;
+    }
+    private void OnDisable()
+    {
+        GameController.KillAllEnemies -= Die;
+    }
 }
