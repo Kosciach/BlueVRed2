@@ -19,6 +19,8 @@ public class CanvasController : MonoBehaviour
     [Space(5)]
     [SerializeField] TextMeshProUGUI[] _menuHighScores;
     [SerializeField] DifficultyScript[] _difficulties;
+    [Space(5)]
+    [SerializeField] TextMeshProUGUI _visibleWallsText;
 
     Dictionary<string, int> _screenKeys = new Dictionary<string, int>();
 
@@ -85,5 +87,11 @@ public class CanvasController : MonoBehaviour
             string currentDifficultyName = _difficulties[i].name;
             _menuHighScores[i].text = currentDifficultyName + ": " + PlayerPrefs.GetInt("HighScore_" + currentDifficultyName);
         }
+    }
+
+
+    public void VisibleWallsTextSwitch(string visible)
+    {
+        _visibleWallsText.text = "Visible walls: " + visible;
     }
 }

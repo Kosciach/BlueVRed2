@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         //Difficulty 
-        _difficultyIndex = 0;
+        _difficultyIndex = PlayerPrefs.GetInt("DifficultyIndex");
         _currentDifficulty = _difficulties[_difficultyIndex];
         _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
 
@@ -87,6 +87,7 @@ public class GameController : MonoBehaviour
     public void SwitchDifficulty()
     {
         _difficultyIndex ++;
+        PlayerPrefs.SetInt("DifficultyIndex", _difficultyIndex);
         _difficultyIndex = _difficultyIndex > _difficulties.Length - 1 ? 0 : _difficultyIndex;
 
         _currentDifficulty = _difficulties[_difficultyIndex];
@@ -114,6 +115,7 @@ public class GameController : MonoBehaviour
     }
     public void StartGame()
     {
+        _enemySpawner.Spawn();
         KillAllEnemies();
         _switches.Entering = true;
     }

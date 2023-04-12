@@ -7,13 +7,25 @@ public class WallsController : MonoBehaviour
     [Header("====References====")]
     [SerializeField] Camera _mainCamera;
     [Space(5)]
-    [SerializeField] Transform _leftWall;
-    [SerializeField] Transform _upWall;
-    [SerializeField] Transform _rightWall;
-    [SerializeField] Transform _downWall;
+    [SerializeField] SpriteRenderer _leftWall;
+    [SerializeField] SpriteRenderer _upWall;
+    [SerializeField] SpriteRenderer _rightWall;
+    [SerializeField] SpriteRenderer _downWall;
 
+    private bool _wallsVisible;
 
+    private void Start()
+    {
+        _wallsVisible = PlayerPrefs.GetInt("VisibleWalls") == 0 ? false : true;
 
+        _leftWall.enabled = _wallsVisible;
+        _upWall.enabled = _wallsVisible;
+        _rightWall.enabled = _wallsVisible;
+        _downWall.enabled = _wallsVisible;
+
+        string visibleWallsText = _wallsVisible ? "Yes" : "No";
+        CanvasController.Instance.VisibleWallsTextSwitch(visibleWallsText);
+    }
     private void Update()
     {
         SetPositions();
@@ -27,10 +39,10 @@ public class WallsController : MonoBehaviour
         Vector3 verticalPosition = new Vector3(0f, _mainCamera.orthographicSize + 0.5f, 0f);
 
 
-        _leftWall.position = -horizontalPosition;
-        _upWall.position = verticalPosition;
-        _rightWall.position = horizontalPosition;
-        _downWall.position = -verticalPosition;
+        _leftWall.transform.position = -horizontalPosition;
+        _upWall.transform.position = verticalPosition;
+        _rightWall.transform.position = horizontalPosition;
+        _downWall.transform.position = -verticalPosition;
     }
     private void SetScales()
     {
@@ -38,9 +50,25 @@ public class WallsController : MonoBehaviour
         Vector3 verticalScale = new Vector3(_mainCamera.orthographicSize * _mainCamera.aspect * 2, 1f, 0f);
 
 
-        _leftWall.localScale = horizontalScale;
-        _upWall.localScale = verticalScale;
-        _rightWall.localScale = horizontalScale;
-        _downWall.localScale = verticalScale;
+        _leftWall.transform.localScale = horizontalScale;
+        _upWall.transform.localScale = verticalScale;
+        _rightWall.transform.localScale = horizontalScale;
+        _downWall.transform.localScale = verticalScale;
+    }
+
+    public void SwitchWallsVisuals()
+    {
+        _wallsVisible = !_wallsVisible;
+
+        int visibleWallsIntConverted = _wallsVisible ? 1 : 0;
+        PlayerPrefs.SetInt("VisibleWalls", visibleWallsIntConverted);
+
+        _leftWall.enabled = _wallsVisible;
+        _upWall.enabled = _wallsVisible;
+        _rightWall.enabled = _wallsVisible;
+        _downWall.enabled = _wallsVisible;
+
+        string visibleWallsText = _wallsVisible ? "Yes" : "No";
+        CanvasController.Instance.VisibleWallsTextSwitch(visibleWallsText);
     }
 }
