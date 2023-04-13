@@ -10,6 +10,7 @@ public class GameStageGameOver : GameStageBase
 
     public override void EnterGameStage()
     {
+        _gameController.PlayerShootingScript.ToggleShootingFromInput(false);
         LeanTween.value(_gameController.CanvasGroup.alpha, 0, 0.2f).setOnUpdate((float val) => { _gameController.CanvasGroup.alpha = val; });
         _gameController.EnemySpawner.Switches.GameOver = true;
         _gameController.EnemySpawner.enabled = false;

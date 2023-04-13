@@ -10,6 +10,7 @@ public class GameStageOriginal : GameStageBase
 
     public override void EnterGameStage()
     {
+        _gameController.PlayerShootingScript.ToggleShootingFromInput(true);
         CanvasController.Instance.SwitchScreen("OriginalScreen");
         LeanTween.value(_gameController.CanvasGroup.alpha, 1, 0.5f).setOnUpdate((float val) => { _gameController.CanvasGroup.alpha = val; }).setOnComplete(() =>
         {

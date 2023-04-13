@@ -17,6 +17,7 @@ public class GameStageExiting : GameStageBase
         _player.rotation = Quaternion.Euler(0, 0, 0);
         _player.position = Vector3.zero;
 
+        AudioController.Instance.PlaySound(12);
         _player.LeanScale(Vector3.one * 0.8f, 0.5f);
         LeanTween.value(_gameController.CanvasGroup.alpha, 0, 1f).setOnUpdate((float val) => { _gameController.CanvasGroup.alpha = val; }).setOnComplete(() => { SceneManager.LoadScene(SceneManager.GetActiveScene().name); });
     }

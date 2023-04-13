@@ -22,6 +22,7 @@ public class AbilitiesScript : MonoBehaviour
         {
             _currentAbility = tempAbility;
             CanvasController.Instance.SetAbilityName(_currentAbility.name);
+            AudioController.Instance.PlaySound(4);
         }
     }
     private void UseAbility()

@@ -12,7 +12,11 @@ public class GameStageMenu : GameStageBase
     public override void EnterGameStage()
     {
         Time.timeScale = 1;
+
+        _gameController.CanvasGroup.alpha = 0;
         CanvasController.Instance.SwitchScreen("MenuScreen");
+        LeanTween.value(_gameController.CanvasGroup.alpha, 1, 0.3f).setOnUpdate((float val) => { _gameController.CanvasGroup.alpha = val; });
+
         _gameController.PlayerStateMachine.SwitchToTurret();
         _gameController.ScoreController.ToggleScore(false);
         _gameController.EnemySpawner.Switches.MoveToPlayer = false;

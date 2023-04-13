@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2646045718230347038}
   m_Layer: 0
   m_Name: PhotonRayPrefab
-  m_TagString: Untagged
+  m_TagString: BulletIgnore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,8 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 10
-  _duration: 3
+  _duration: 4
   _rayMask:
     serializedVersion: 2
     m_Bits: 8
   _rayHit: {fileID: 7711890370369193601, guid: 8170d46351b6fb540b6f29b042c5545e, type: 3}
+  _width: 0

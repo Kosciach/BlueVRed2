@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Wall
   - PlayerShield
+  - BulletIgnore
   layers:
   - Default
   - TransparentFX

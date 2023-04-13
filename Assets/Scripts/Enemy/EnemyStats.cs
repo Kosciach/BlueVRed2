@@ -63,6 +63,7 @@ public class EnemyStats : MonoBehaviour
 
         if(_emitDeath) Death();
         ShakeScript.Instance.Shake(2, 10);
+        AudioController.Instance.PlaySound(3);
         Instantiate(_enemyDeathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -10,6 +10,7 @@ public class GameStagePause : GameStageBase
 
     public override void EnterGameStage()
     {
+        _gameController.PlayerShootingScript.ToggleShootingFromInput(false);
         Time.timeScale = 0f;
         CanvasController.Instance.SwitchScreen("PauseScreen");
     }

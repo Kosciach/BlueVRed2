@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class PhotonRayScript : MonoBehaviour
     }
     private void Start()
     {
+        AudioController.Instance.PlaySound(6);
         LeanTween.value(0, 0.2f, 0.5f).setOnUpdate((float val) =>
         {
             _width = val;
@@ -72,6 +74,7 @@ public class PhotonRayScript : MonoBehaviour
             _width = val;
         }).setOnComplete(() =>
         {
+            //AudioController.Instance.StopSound(6);
             Destroy(gameObject, _duration);
         });
     }

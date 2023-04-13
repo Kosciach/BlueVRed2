@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     [SerializeField] EnemySpawner _enemySpawner; public EnemySpawner EnemySpawner { get { return _enemySpawner; } }
     [SerializeField] ScoreController _scoreController; public ScoreController ScoreController { get { return _scoreController; } }
     [SerializeField] CanvasGroup _canvasGroup; public CanvasGroup CanvasGroup { get { return _canvasGroup; } }
+    [SerializeField] ShootingScript _playerShootingScript; public ShootingScript PlayerShootingScript { get { return _playerShootingScript; } }
 
 
 

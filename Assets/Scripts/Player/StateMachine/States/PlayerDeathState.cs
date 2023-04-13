@@ -47,6 +47,7 @@ public class PlayerDeathState : PlayerBaseState
     private void StartPlayerExplosion()
     {
         ShakeScript.Instance.Shake(5, 0);
+        AudioController.Instance.PlaySound(10);
         _ctx.transform.LeanScale(Vector3.zero, 2).setOnComplete(() =>
         {
             ShakeScript.Instance.Shake(0, 5);
@@ -56,6 +57,8 @@ public class PlayerDeathState : PlayerBaseState
     private void Explode()
     {
         _exploded = true;
+        AudioController.Instance.PlaySound(11);
+        ShakeScript.Instance.Shake(5, 5);
         GameObject.Instantiate(_ctx.PlayerDeathCircle, _ctx.transform.position, Quaternion.identity);
     }
 }

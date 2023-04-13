@@ -21,6 +21,7 @@ public class BulletScript : MonoBehaviour
     private void Start()
     {
         _rigidbody.AddForce(transform.up * _speed, ForceMode2D.Impulse);
+        AudioController.Instance.PlaySound(2);
     }
 
     private void Impact(GameObject hit)
@@ -34,7 +35,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("PlayerBullet") || collision.CompareTag("EnergyCircle") || collision.CompareTag("PlayerShield")) return;
+        if (collision.CompareTag("Player") || collision.CompareTag("PlayerBullet") || collision.CompareTag("EnergyCircle") || collision.CompareTag("PlayerShield") || collision.CompareTag("BulletIgnore")) return;
 
 
         Impact(collision.gameObject);
