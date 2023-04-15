@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Medium
   m_EditorClassIdentifier: 
   DifficultyName: Medium
+  DifficultyKey: Medium
   MaxEnemySpawnRateIncrease: 60
   EnemySpawnRateIncrease: 7
   EnemiesToSpawnRateIncrease: 10

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CorruptionReduction
   m_EditorClassIdentifier: 
   Name: CorruptionReduction
-  DropChance: 10
+  DropChance: 15
   AbilityPrefab: {fileID: 6714216921428445393, guid: 030a867db312e8a4aa7005526667b022, type: 3}

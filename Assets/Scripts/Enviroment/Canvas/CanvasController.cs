@@ -34,6 +34,8 @@ public class CanvasController : MonoBehaviour
         _screenKeys.Add("OriginalScreen", 4);
         _screenKeys.Add("PauseScreen", 5);
         _screenKeys.Add("ResultScreen", 6);
+        _screenKeys.Add("GuideScreen", 7);
+        _screenKeys.Add("AbilitiesScreen", 8);
         Instance = this;
     }
     private void Start()
@@ -84,8 +86,7 @@ public class CanvasController : MonoBehaviour
     {
         for (int i = 0; i < _menuHighScores.Length; i++)
         {
-            string currentDifficultyName = _difficulties[i].name;
-            _menuHighScores[i].text = currentDifficultyName + ": " + PlayerPrefs.GetInt("HighScore_" + currentDifficultyName);
+            _menuHighScores[i].text = _difficulties[i].DifficultyName + ": " + PlayerPrefs.GetInt("HighScore_" + _difficulties[i].DifficultyKey);
         }
     }
 
@@ -93,5 +94,10 @@ public class CanvasController : MonoBehaviour
     public void VisibleWallsTextSwitch(string visible)
     {
         _visibleWallsText.text = "Visible walls: " + visible;
+    }
+
+    public void OpenUrl(string link)
+    {
+        Application.OpenURL(link);
     }
 }

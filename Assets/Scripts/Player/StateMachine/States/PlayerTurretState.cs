@@ -17,8 +17,8 @@ public class PlayerTurretState : PlayerBaseState
     }
     public override void StateUpdate()
     {
-        _ctx.ShootingScript.TurretShooting();
-        _ctx.AimingController.TurretRotation();
+        float distanceToEnemy = _ctx.AimingController.TurretRotation();
+        _ctx.ShootingScript.TurretShooting(distanceToEnemy);
     }
     public override void StateFixedUpdate()
     {

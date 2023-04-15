@@ -48,9 +48,10 @@ public class AudioController : MonoBehaviour
     {
         _soundSources[index].Play();
     }
-    public void StopSound(int index)
+    public void PauseMusic(bool pause, int index)
     {
-        _soundSources[index].Stop();
+        if (pause) _musicSources[index].Pause();
+        else _musicSources[index].Play();
     }
 
 

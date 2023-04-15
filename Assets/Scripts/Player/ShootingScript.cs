@@ -30,9 +30,9 @@ public class ShootingScript : MonoBehaviour
     {
         if(_canShootFromInput) Instantiate(_bulletPrefab, _shootingPoint.position, transform.rotation);
     }
-    public void TurretShooting()
+    public void TurretShooting(float distanceToClosestEnemy)
     {
-        _timeToShoot -= _timeToShootMultiplier * 10 * Time.deltaTime;
+        _timeToShoot -= _timeToShootMultiplier * 10 * (10 - distanceToClosestEnemy) * Time.deltaTime;
         _timeToShoot = Mathf.Clamp(_timeToShoot, 0, _timeBetweenShoots);
 
         if(_timeToShoot == 0)

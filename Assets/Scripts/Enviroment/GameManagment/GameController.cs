@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
         _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
 
         CanvasController.Instance.ChangeDifficultyName(_currentDifficulty.DifficultyName);
-        _scoreController.SetDifficultyName(_currentDifficulty.name);
+        _scoreController.SetDifficultyName(_currentDifficulty.DifficultyKey);
     }
     private void Update()
     {
@@ -95,7 +95,7 @@ public class GameController : MonoBehaviour
         _enemiesLeftToSpawnRateIncrease = _currentDifficulty.EnemiesToSpawnRateIncrease;
 
         CanvasController.Instance.ChangeDifficultyName(_currentDifficulty.DifficultyName);
-        _scoreController.SetDifficultyName(_currentDifficulty.name);
+        _scoreController.SetDifficultyName(_currentDifficulty.DifficultyKey);
     }
     private void SpawnRateControll()
     {

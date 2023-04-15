@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24e7e71b5291bdb449e76d8d64d18d64, type: 3}
-  m_Name: WEMIP60
+  m_Script: {fileID: 11500000, guid: ebbd6dd5f0e26524b9c442813c456be0, type: 3}
+  m_Name: ReverseCorruption
   m_EditorClassIdentifier: 
-  DifficultyName: WEMIP60
-  MaxEnemySpawnRateIncrease: 200
-  EnemySpawnRateIncrease: 20
-  EnemiesToSpawnRateIncrease: 3
+  Name: Reverse Corruption
+  DropChance: 20
+  AbilityPrefab: {fileID: 3935671023142657618, guid: b1c658ebdbb36664397a060d4c87d1ee, type: 3}

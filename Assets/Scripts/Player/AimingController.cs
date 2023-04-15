@@ -28,6 +28,8 @@ public class AimingController : MonoBehaviour
     {
         _aimTarget.position = Vector3.Lerp(_aimTarget.position, _inputController.MousePosition, _aimDelay * Time.deltaTime);
     }
+
+
     public void RotateToMouse()
     {
         float diffX = _aimTarget.position.x - transform.position.x;
@@ -36,20 +38,20 @@ public class AimingController : MonoBehaviour
         float angle = Mathf.Atan2(diffY, diffX) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
-    public void TurretRotation()
+    public float TurretRotation()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, _turretDetectionRadius, _enemyMask);
-        if (enemies.Length <= 0) return;
+        if (enemies.Length <= 0) return 0;
 
-        float distance = Mathf.Infinity;
+        float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;
 
         foreach(Collider2D enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < distance)
+            if (distanceToEnemy < closestDistance)
             {
-                distance = distanceToEnemy;
+                closestDistance = distanceToEnemy;
                 closestEnemy = enemy.transform;
             }
         }
@@ -60,5 +62,7 @@ public class AimingController : MonoBehaviour
 
         float angle = Mathf.Atan2(diffY, diffX) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        return closestDistance;
     }
 }

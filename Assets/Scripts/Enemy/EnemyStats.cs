@@ -41,7 +41,7 @@ public class EnemyStats : MonoBehaviour
     }
     private void Update()
     {
-        if (_health < 15 && _health > 0) TakeDamage(0.1f);
+        if (_health < 15 && _health > 0) TakeDamage(30 * Time.deltaTime);
         transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * (_health / 100) * 2, _scaleRescaleSpeed * 10 * Time.deltaTime);
     }
 

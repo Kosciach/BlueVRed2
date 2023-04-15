@@ -12,6 +12,7 @@ public class GameStagePause : GameStageBase
     {
         _gameController.PlayerShootingScript.ToggleShootingFromInput(false);
         Time.timeScale = 0f;
+        AudioController.Instance.PauseMusic(true, 0);
         CanvasController.Instance.SwitchScreen("PauseScreen");
     }
     public override void CheckGameStageChange()
@@ -22,6 +23,7 @@ public class GameStagePause : GameStageBase
     }
     public override void ExitGameStage()
     {
+        AudioController.Instance.PauseMusic(false, 0);
         Time.timeScale = 1f;
         CanvasController.Instance.SwitchScreen("OriginalScreen");
         _gameController.Switches.Pause = false;
