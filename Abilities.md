@@ -12,9 +12,9 @@
 <h2 align="center">How abilities work</h2>
 <p align="center">
   To use the ability player has to press RMB, each ability spawns a gameobject with a script that executed on awake.
-  Corruption reduction has a script that on awake gets player stats and reduces corruption by a set percent and updates players color.
+  CorruptionReduction has a script that on awake gets player stats and reduces corruption by a set percent and updates players color.
   <br><br>
-  Abilities can work together, using PowerSurge will make player shoot very very fast for a few seconds, but enemies can attack from the back. By adding RadianBurst to it will assure that player is safe from any attacks.
+  Abilities can work together, PowerSurge will make player shoot very very fast for a few seconds, but enemies can still attack player from the back. By combining it with RadianBurst, player will be safe from any attacks.
 </p>
 
 
