@@ -17,3 +17,7 @@
 </h3>
 
 <br>
+
+<h3 align="center">
+  <a href="Abilities.md">Abilities</a>
+</h3>
