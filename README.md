@@ -1,6 +1,4 @@
 <h1 align="center">BlueVRed2</h1>
-
-<h3 align="center">What is it?</h3>
   <img src="https://img.itch.zone/aW1hZ2UvMTgwODM3NS8xMTg2NjA0OS5wbmc=/original/zoHZdX.png" alt="BVR2Screenshot">
   <p align="center">
     BlueVRed2 is a new version of my original BlueVRed.
