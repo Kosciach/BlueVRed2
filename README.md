@@ -12,22 +12,8 @@
 
 <br>
 
-<h2 align="center">Mechanics</h2>
-
-<br>
-
-<h3 align="center">Enemies</h3>
-<h2 align="center"> </h2>
-<p align="center">
-
-</p>
-
-<br>
-
-<h3 align="center">Abilities</h3>
-<h2 align="center"> </h2>
-<p align="center">
-
-</p>
+<h3 align="center">
+  <a href="Enemies.md">Enemies</a>
+</h3>
 
 <br>
