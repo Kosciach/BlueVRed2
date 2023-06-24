@@ -1,5 +1,7 @@
 <h1 align="center">BlueVRed2</h1>
+<a href="https://kosciach.itch.io/bluevred" align="center">
   <img src="https://img.itch.zone/aW1hZ2UvMTgwODM3NS8xMTg2NjA0OS5wbmc=/original/zoHZdX.png" alt="BVR2Screenshot">
+</a>
   <p align="center">
     BlueVRed2 is a new version of my original BlueVRed.
     Inspiration for this project was one of my first game made in javascript, it looked similarly to current version but lacked a lot of features.
