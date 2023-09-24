@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DifficultyName: Hard
   DifficultyKey: Hard
-  MaxEnemySpawnRateIncrease: 100
-  EnemySpawnRateIncrease: 10
-  EnemiesToSpawnRateIncrease: 6
+  MaxEnemySpawnRateIncrease: 200
+  EnemySpawnRateIncrease: 20
+  EnemiesToSpawnRateIncrease: 3

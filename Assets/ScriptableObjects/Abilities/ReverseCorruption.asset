@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ReverseCorruption
   m_EditorClassIdentifier: 
   Name: Reverse Corruption
-  DropChance: 20
+  DropChance: 10
   AbilityPrefab: {fileID: 3935671023142657618, guid: b1c658ebdbb36664397a060d4c87d1ee, type: 3}

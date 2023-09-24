@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PowerSurge
   m_EditorClassIdentifier: 
   Name: Power Surge
-  DropChance: 20
+  DropChance: 30
   AbilityPrefab: {fileID: 6768663590662151738, guid: 922ad48cb51643a4ea1a8b8f93436b7c, type: 3}

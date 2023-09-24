@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RadiantBurst
   m_EditorClassIdentifier: 
   Name: Radiant Burst
-  DropChance: 30
+  DropChance: 25
   AbilityPrefab: {fileID: 3899801917072362391, guid: c577d06ffdce5e749a0d5362540d9b23, type: 3}

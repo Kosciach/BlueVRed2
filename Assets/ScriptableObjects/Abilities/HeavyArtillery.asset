@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HeavyArtillery
   m_EditorClassIdentifier: 
   Name: HeavyArtillery
-  DropChance: 25
+  DropChance: 45
   AbilityPrefab: {fileID: 8040486497622579459, guid: 18b37cfa00c20ec4293649de2b9568bf, type: 3}
